@@ -1,3 +1,63 @@
 /* 
     General Styles
 */
+@import "~bootstrap/scss/bootstrap.scss";
+
+
+
+body{
+    background-image: url("https://st2.depositphotos.com/3769671/8857/v/450/depositphotos_88570376-stock-illustration-galaxy-background-with-stars.jpg");
+    background-color: #cccccc;
+}
+#navbar{
+    background-image: url("https://st2.depositphotos.com/3769671/8857/v/450/depositphotos_88570376-stock-illustration-galaxy-background-with-stars.jpg");
+    background-color: #cccccc;
+ 
+}
+#logo{
+    width: 200px;
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+//Character.js
+#characters{
+    background-image: url("https://st2.depositphotos.com/3769671/8857/v/450/depositphotos_88570376-stock-illustration-galaxy-background-with-stars.jpg");
+    background-color: #cccccc;
+    height: 400px;
+    width: 500px;
+}
+
+#charactersInfo{
+    color: white;
+    padding: 3px;
+}
+
+
+//Planet.Js
+#planet{
+    background-image: url("https://st2.depositphotos.com/3769671/8857/v/450/depositphotos_88570376-stock-illustration-galaxy-background-with-stars.jpg");
+    background-color: #cccccc;
+    height: 420px;
+    width: 500px;
+}
+#planetInfo{
+    color: white;
+    padding: 2px;
+}
+
+///Afecta Todo
+p{
+    margin: 2px;
+}
+h1{
+    color: rgba(255, 0, 0, 0.651);
+}
+#like{
+    margin-left: 120px;
+    margin-top: 10px;
+}
+// #characterConteiner{
+      
+// overflow-x:  scroll;
+// }
