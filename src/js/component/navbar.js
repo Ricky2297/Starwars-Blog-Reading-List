@@ -1,7 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useContext, useState } from "react";
+import PropTypes, { element } from "prop-types";
+import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
+	const [showDropdown, setShowDropdown] = useState(false);
+	const [clickedDropDown, setClickedDropDown] = useState(false);
+	let show = "";
+	if (clickedDropDown) show = "show";
+
 	return (
 		<div>
 			<nav id="navbar" className="navbar navbar-light bg-light justify-content-between">
@@ -13,12 +21,37 @@ export const Navbar = () => {
 					{/* <i className="fab fa-galactic-senate text-danger" />
 					<h1 id="wars">Star Wars</h1> */}
 				</a>
-
-				<form className="form-inline">
-					<button className="btn btn-outline-danger my-2 my-sm-0" type="submit">
-						Favorites
+				<a className={"nav-item dropdown " + (showDropdown ? "show" : "")}>
+					<button
+						className="faves btn btn-outline-dark nav-link dropdown-toggle"
+						href="#"
+						id="navbarDropdown"
+						role="button"
+						data-toggle="dropdown"
+						aria-haspopup="true"
+						aria-expanded={clickedDropDown}
+						onClick={() => setClickedDropDown(!clickedDropDown)}>
+						FAVORITES <span className="badge badge-secondary">{store.favorites.length}</span>
 					</button>
-				</form>
+					<div
+						className={store.favorites.length > 0 ? "dropdown-menu " + "show" : "d-none"}
+						aria-labelledby="navbarDropdown">
+						{store.favorites.length > 0
+							? store.favorites.map((elm, index) => (
+									<li
+										key={index}
+										className="dropdown-item d-flex align-items-center justify-content-between">
+										<Link to={`/details/${index + 1}`}>{elm.name}</Link>
+										&nbsp;&nbsp;
+										<i
+											className="fas fa-backspace"
+											onClick={() => actions.deleteFromFavorites(elm)}
+										/>
+									</li>
+							  ))
+							: null}
+					</div>
+				</a>
 			</nav>
 		</div>
 	);

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const Planet = props => {
+	const { store, actions } = useContext(Context);
 	return (
-		<div className="d-inline-flex pr-2 ">
+		<div className="d-inline-flex pr-5 ">
 			{/* post */}
 			<div id="planet" className="card  mt-5 bg-dark " style={{ width: "18rem" }}>
 				<img
@@ -35,9 +37,12 @@ export const Planet = props => {
 						</button>
 					</Link>
 
-					<a id="like" href="#" className="btn btn-outline-warning">
-						<i className="fas fa-heart" />
-					</a>
+					<button
+						type="button"
+						className="btn btn-outline-warning"
+						onClick={() => actions.addFavorites(props.plan.name)}>
+						{<i className="fas fa-heart" />}
+					</button>
 				</div>
 			</div>
 		</div>

@@ -1,25 +1,41 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			favorites: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-			loadSomeData: () => {
+			loadPeople: () => {
+				fetch("https://swapi.dev/api/people/")
+					.then(resp => {
+						if (!resp.ok) {
+							throw Error(resp.statusText);
+						}
+						return resp.json();
+					})
+					.then(data => setStore({ characters: data.results }))
+					.catch(function(error) {
+						console.log("Looks like there was a problem: \n", error);
+					});
+				/**
+					fetch().then().then(data => setStore({ "foo": data.bar }))
+				*/
+			},
+			loadPlanets: () => {
+				fetch("https://swapi.dev/api/planets/")
+					.then(resp => {
+						if (!resp.ok) {
+							throw Error(resp.statusText);
+						}
+						return resp.json();
+					})
+					.then(data => setStore({ planets: data.results }))
+					.catch(function(error) {
+						console.log("Looks like there was a problem: \n", error);
+					});
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
@@ -37,6 +53,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+
+			addFavorites: name => {
+				let tempStore = getStore();
+				let newFavorite = { name: name };
+
+				tempStore.favorites.push(newFavorite);
+				setStore({ tempStore });
+			},
+
+			deleteFromFavorites: e => {
+				let { favorites } = getStore();
+				setStore({ favorites: favorites.filter(favorite => favorite.name != e.name) });
 			}
 		}
 	};
