@@ -23,7 +23,7 @@ export const Navbar = () => {
 				</a>
 				<a className={"nav-item dropdown " + (showDropdown ? "show" : "")}>
 					<button
-						className="faves btn btn-outline-dark nav-link dropdown-toggle"
+						className="faves btn btn-outline-danger nav-link dropdown-toggle"
 						href="#"
 						id="navbarDropdown"
 						role="button"
@@ -31,7 +31,7 @@ export const Navbar = () => {
 						aria-haspopup="true"
 						aria-expanded={clickedDropDown}
 						onClick={() => setClickedDropDown(!clickedDropDown)}>
-						FAVORITES <span className="badge badge-secondary">{store.favorites.length}</span>
+						FAVORITES <span className="badge badge-danger">{store.favorites.length}</span>
 					</button>
 					<div
 						className={store.favorites.length > 0 ? "dropdown-menu " + "show" : "d-none"}
@@ -40,7 +40,7 @@ export const Navbar = () => {
 							? store.favorites.map((elm, index) => (
 									<li
 										key={index}
-										className="dropdown-item d-flex align-items-center justify-content-between">
+										className="dropdown-item d-flex align-items-center justify-content-between bg-dark text-danger">
 										<Link to={`/details/${index + 1}`}>{elm.name}</Link>
 										&nbsp;&nbsp;
 										<i

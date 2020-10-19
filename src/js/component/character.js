@@ -40,6 +40,7 @@ export const Character = props => {
 
 					<button
 						type="button"
+						id="like"
 						className="btn btn-outline-warning"
 						onClick={found ? null : () => actions.addFavorites(props.char.name)}>
 						{<i className="fas fa-heart" />}

@@ -39,6 +39,7 @@ export const Planet = props => {
 
 					<button
 						type="button"
+						id="like"
 						className="btn btn-outline-warning"
 						onClick={() => actions.addFavorites(props.plan.name)}>
 						{<i className="fas fa-heart" />}
